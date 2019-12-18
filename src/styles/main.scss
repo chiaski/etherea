@@ -32,7 +32,17 @@
     max-height:650px;
     margin:0 auto;
     background:yellow;
+    overflow:hidden;
 }
+
+.wrapper-landscape{
+    position: relative;
+    background:blue;
+    width:1000px;
+   
+}
+
+
 
 .piece{
     position: relative !important;
