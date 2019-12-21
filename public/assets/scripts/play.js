@@ -1,61 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>land #1</title>
-  <link rel="stylesheet" href="./assets/styles/main.css" type="text/css">
-      
-  <style type="text/css">
-   
-			#blocker {
-				position: absolute;
-				width: 100%;
-				height: 100%;
-			}
-
-  </style>
-      
-      
-  </head>
-  <body>
-      
-      <div class="container" id="container">
-          
-          
-		<div id="blocker">
-
-
-		</div>
-      
-      <div class="piece">
-      inside there is a tortorous, magnificent <a href="">door</a> beckoning of a place years to come. i feel her faintly, scratches and all&mdash;pressed my ear onto the nape of the evergreen and see behind the slints a new world
-      </div>
-          
-          
-      <div class="piece piece-circle" style="width:170px;height:150px;top:20vh;left:20vw;">alive 
-      where we glisten together like sovereign and are lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. alive where we glisten together like sovereign and are lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. 
-      </div>
-          
-          
-      <div class="piece piece-mountain" style="position:absolute;bottom:10px;width:300px;height:400px;right:5vw;">
-      when we climb the steps of a famailiar space we are far more undersatnding i dream of higher places, mountains, and men holding up my world. on other days we climb attempting to reach the lords and towers hiding there in the sky
-          
-      </div>
-          
-          
-      <div class="piece" style="position:absolute;bottom:0;width:100%;left:0;">
-      the land is rich and green and pure. a bovine carcass rests on the land, dust and ash whirling against a rising, drappling sky. my girl climbs slowly on hilltops
-      </div>
-          
-        </div>
-    
-  
-      <script type="module">
-          import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/109/three.module.js';
-			import { PointerLockControls } from './assets/scripts/pointerlock.js';
-			var camera, scene, renderer, controls;
+var camera, scene, renderer, controls;
 			var objects = [];
 			var raycaster;
 			var moveForward = false;
@@ -72,7 +15,6 @@
 			animate();
 			function init() {
 				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
-                camera.updateMatrixWorld();
 				camera.position.y = 10;
 				scene = new THREE.Scene();
 				scene.background = new THREE.Color( 0xffffff );
@@ -82,9 +24,18 @@
 				scene.add( light );
 				controls = new PointerLockControls( camera, document.body );
 				var blocker = document.getElementById( 'blocker' );
-                
-                controls.lock();
-                
+				var instructions = document.getElementById( 'instructions' );
+				instructions.addEventListener( 'click', function () {
+					controls.lock();
+				}, false );
+				controls.addEventListener( 'lock', function () {
+					instructions.style.display = 'none';
+					blocker.style.display = 'none';
+				} );
+				controls.addEventListener( 'unlock', function () {
+					blocker.style.display = 'block';
+					instructions.style.display = '';
+				} );
 				scene.add( controls.getObject() );
 				var onKeyDown = function ( event ) {
 					switch ( event.keyCode ) {
@@ -103,6 +54,10 @@
 						case 39: // right
 						case 68: // d
 							moveRight = true;
+							break;
+						case 32: // space
+							if ( canJump === true ) velocity.y += 350;
+							canJump = false;
 							break;
 					}
 				};
@@ -143,36 +98,16 @@
 				}
 				floorGeometry = floorGeometry.toNonIndexed(); // ensure each face has unique vertices
 				position = floorGeometry.attributes.position;
-                
-                
 				var colors = [];
-                
-                /*
 				for ( var i = 0, l = position.count; i < l; i ++ ) {
 					color.setHSL( Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
 					colors.push( color.r, color.g, color.b );
 				}
-                */
-                
-                
-				for ( var i = 0, l = position.count; i < l; i ++ ) {
-                color.setHSL(1, 1, 0.01);
-                colors.push(color.r, color.g, color.b);
-                    }
-                
 				floorGeometry.setAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
-                
-                
-                
-                
-                
 				var floorMaterial = new THREE.MeshBasicMaterial( { vertexColors: THREE.VertexColors } );
-                
 				var floor = new THREE.Mesh( floorGeometry, floorMaterial );
 				scene.add( floor );
 				// objects
-                
-                /*
 				var boxGeometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
 				boxGeometry = boxGeometry.toNonIndexed(); // ensure each face has unique vertices
 				position = boxGeometry.attributes.position;
@@ -192,9 +127,6 @@
 					scene.add( box );
 					objects.push( box );
 				}
-                
-                */
-                
 				//
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
@@ -241,8 +173,3 @@
 				}
 				renderer.render( scene, camera );
 			}
-          
-      </script>
-      
-  </body>
-</html>
