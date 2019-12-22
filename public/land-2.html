@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>land #1</title>
+  <link rel="stylesheet" href="./assets/styles/main.css" type="text/css">
+      
+  <style type="text/css">
+   
+			#blocker {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+			}
+
+  </style>
+      
+      
+  </head>
+  <body>
+      
+      <div class="container" id="container">
+          
+          
+		<div id="blocker">
+
+
+		</div>
+      
+      <div class="piece" style="transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(10deg) rotateY(18deg) rotateZ(0deg);
+-moz-transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(10deg) rotateY(18deg) rotateZ(0deg);
+-webkit-transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(10deg) rotateY(18deg) rotateZ(0deg);
+-o-transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(10deg) rotateY(18deg) rotateZ(0deg);
+-ms-transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(10deg) rotateY(18deg) rotateZ(0deg);
+perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -webkit-perspective-origin: 50% 30%;">
+      inside there is a tortorous, magnificent <a href="">door</a> beckoning of a place years to come. i feel her faintly, scratches and all&mdash;pressed my ear onto the nape of the evergreen and see behind the slints a new world
+      </div>
+          
+          
+      <div class="piece piece-circle" style="width:170px;height:150px;top:20vh;left:20vw;">alive 
+      where we glisten together like sovereign and are lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. alive where we glisten together like sovereign and are lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. 
+      </div>
+          
+          
+      <div class="piece piece-mountain" style="position:absolute;bottom:10px;width:300px;height:400px;right:5vw;">
+      when we climb the steps of a famailiar space we are far more undersatnding i dream of higher places, mountains, and men holding up my world. on other days we climb attempting to reach the lords and towers hiding there in the sky
+          
+      </div>
+          
+          
+      <div class="piece" style="position:absolute;bottom:0;width:100%;left:0;">
+      the land is rich and green and pure. a bovine carcass rests on the land, dust and ash whirling against a rising, drappling sky. my girl climbs slowly on hilltops
+      </div>
+          
+        </div>
+    
+  
+      <script type="module">
+          import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/109/three.module.js';
+			
+          import { TrackballControls } from './assets/scripts/trackballcontrols.js';
+          
+          var perspectiveCamera, orthographicCamera, controls, scene, renderer, stats;
+
+			var params = {
+				orthographicCamera: false
+			};
+
+			var frustumSize = 400;
+
+			init();
+			animate();
+
+			function init() {
+
+				var aspect = window.innerWidth / window.innerHeight;
+
+				perspectiveCamera = new THREE.PerspectiveCamera( 60, aspect, 1, 1000 );
+				perspectiveCamera.position.z = 500;
+
+				orthographicCamera = new THREE.OrthographicCamera( frustumSize * aspect / - 2, frustumSize * aspect / 2, frustumSize / 2, frustumSize / - 2, 1, 1000 );
+				orthographicCamera.position.z = 500;
+
+				// world
+
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xcccccc );
+				scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
+
+				var geometry = new THREE.CylinderBufferGeometry( 0, 10, 30, 4, 1 );
+				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
+
+				for ( var i = 0; i < 50; i ++ ) {
+
+					var mesh = new THREE.Mesh( geometry, material );
+					mesh.position.x = ( Math.random() - 0.5 ) * 200;
+					mesh.position.y = ( Math.random() - 0.5 ) * 500;
+					mesh.position.z = ( Math.random() - 0.5 ) * 200;
+					mesh.updateMatrix();
+					mesh.matrixAutoUpdate = false;
+					scene.add( mesh );
+
+				}
+
+				// lights
+
+				var light = new THREE.DirectionalLight( 0xffffff );
+				light.position.set( 1, 1, 1 );
+				scene.add( light );
+
+				var light = new THREE.DirectionalLight( 0x002288 );
+				light.position.set( - 1, - 1, - 1 );
+				scene.add( light );
+
+				var light = new THREE.AmbientLight( 0x222222 );
+				scene.add( light );
+
+				// renderer
+
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+
+
+				//
+
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+				createControls( perspectiveCamera );
+
+			}
+
+			function createControls( camera ) {
+
+				controls = new TrackballControls( camera, renderer.domElement );
+
+				controls.rotateSpeed = 1.0;
+				controls.zoomSpeed = 1.2;
+				controls.panSpeed = 0.8;
+
+				controls.keys = [ 65, 83, 68 ];
+
+			}
+
+			function onWindowResize() {
+
+				var aspect = window.innerWidth / window.innerHeight;
+
+				perspectiveCamera.aspect = aspect;
+				perspectiveCamera.updateProjectionMatrix();
+
+				orthographicCamera.left = - frustumSize * aspect / 2;
+				orthographicCamera.right = frustumSize * aspect / 2;
+				orthographicCamera.top = frustumSize / 2;
+				orthographicCamera.bottom = - frustumSize / 2;
+				orthographicCamera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				controls.handleResize();
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				controls.update();
+
+
+				render();
+
+			}
+
+			function render() {
+
+				var camera = ( params.orthographicCamera ) ? orthographicCamera : perspectiveCamera;
+
+				renderer.render( scene, camera );
+
+			}
+
+      </script>
+      
+  </body>
+</html>
