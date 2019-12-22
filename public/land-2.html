@@ -91,7 +91,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 				// world
 
 				scene = new THREE.Scene();
-				scene.background = new THREE.Color( 0xcccccc );
+				scene.background = new THREE.Color( 0xffffff );
 				scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
 
 				var geometry = new THREE.CylinderBufferGeometry( 0, 10, 30, 4, 1 );
@@ -101,8 +101,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
                 let words = [];
                 
                 words = [
-                    `alive where we glisten together like sovereigns
-                    and are lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. alive where we glisten together like sovereign and are lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. `
+                    `alive where we glisten together like sovereigns lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. alive where we glisten together like sovereign and are lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. `
                 ]
                 
                 
@@ -161,12 +160,10 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 
                var canvas1 = document.createElement('canvas');
     var context1 = canvas1.getContext('2d');
-    context1.font = "Bold 12px Arial";
+    context1.font = "Bold 14px Arial";
     context1.fillStyle = "rgb(0, 0, 0, 1)";
-   // context1.fillText(words[0], 0, 50);
-                
-                
-      wrapText(context1, words[0], 0, 0, 300, 12);
+    
+    wrapText(context1, words[0], 0, 10, 250, 12);
 
     var texture1 = new THREE.Texture(canvas1);
     texture1.needsUpdate = true;
@@ -179,7 +176,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
         material1
     );
 
-    mesh1.position.set(0, 0, 0);
+    mesh1.position.set(0, 0, 50);
 
     scene.add( mesh1 );
 
@@ -191,11 +188,11 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 				light.position.set( 1, 1, 1 );
 				scene.add( light );
 
-				var light = new THREE.DirectionalLight( 0x002288 );
+				var light = new THREE.DirectionalLight( 0x7e93d3 );
 				light.position.set( - 1, - 1, - 1 );
 				scene.add( light );
 
-				var light = new THREE.AmbientLight( 0x222222 );
+				var light = new THREE.AmbientLight( 0xd8d8d8 );
 				scene.add( light );
 
 				// renderer
