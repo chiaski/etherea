@@ -61,7 +61,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
           import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/109/three.module.js';
 			
           import { TrackballControls } from './assets/scripts/trackballcontrols.js';
-          import { CSS3DRenderer } from './assets/scripts/css3renderer.js';
+          import { CSS3DRenderer, CSS3DObject } from './assets/scripts/css3renderer.js';
           
           var perspectiveCamera, orthographicCamera, controls, scene, renderer, stats;
 
@@ -123,6 +123,28 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
                 // add it to the WebGL scene
                 
                 scene.add(planeMesh); 
+
+               var canvas1 = document.createElement('canvas');
+    var context1 = canvas1.getContext('2d');
+    context1.font = "Bold 40px Arial";
+    context1.fillStyle = "rgba(49, 13, 13, 0.95)";
+    context1.fillText("hi!!!!!!!", 0, 50);
+
+    var texture1 = new THREE.Texture(canvas1);
+    texture1.needsUpdate = true;
+
+    var material1 = new THREE.MeshBasicMaterial( { map: texture1, side:THREE.DoubleSide } );
+    material1.transparent = true;
+
+    var mesh1 = new THREE.Mesh(
+        new THREE.PlaneGeometry(canvas1.width, canvas1.height),
+        material1
+    );
+
+    mesh1.position.set(0, 0, 0);
+
+    scene.add( mesh1 );
+                
                 
 				// lights
 
