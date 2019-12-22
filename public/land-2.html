@@ -181,9 +181,36 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 
                 }
                 
+                
+                /* 
                 addText(words[0], 250, 0, 0, -50);
                 addText(words[1], 50, 50, 100, -100);
+                */
                 
+                
+                let pieces = [
+                    {
+                    text: `alive where we glisten together like sovereigns lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. alive where we glisten together like sovereign and are lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. `,
+                    location: [0, 0, -50],
+                    width: 250
+                    },
+                    
+                    {
+                    text: `THE GHOST OF BOB SAGET CAME TO ME IN A DREAM `,
+                    location: [50, 150, -100],
+                    width: 50
+                    },
+                ];
+                
+                
+                
+                for(let i=0;i<pieces.length; i++){
+                    
+                    let p = pieces[i];
+                    addText(p.text, p.width, p.location[0], p.location[1], p.location[2]);
+                            
+                    
+                }
 
                 
                 // create the plane mesh
