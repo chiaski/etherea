@@ -98,37 +98,14 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
                 
                 
-                let words = [];
-                
-                words = [
-                    `alive where we glisten together like sovereigns lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. alive where we glisten together like sovereign and are lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. `,
-                    `someones knocking on your door if i turned towards me with an open mouth`
-                ]
-                
-                
                 var cssRenderer = new CSS3DRenderer();
-                
-                
-
+            
                 cssRenderer.setSize( window.innerWidth, window.innerHeight );
                 cssRenderer.domElement.style.position = 'absolute';
                 cssRenderer.domElement.style.top = 0;
 
 
-				for ( var i = 0; i < 50; i ++ ) {
-
-					var mesh = new THREE.Mesh( geometry, material );
-					mesh.position.x = ( Math.random() - 0.5 ) * 200;
-					mesh.position.y = ( Math.random() - 0.5 ) * 500;
-					mesh.position.z = ( Math.random() - 0.5 ) * 200;
-					mesh.updateMatrix();
-					mesh.matrixAutoUpdate = false;
-					scene.add( mesh );
-
-				}
-
-
-                function addText(text, maxWidth, x, y, z){
+                function addText(text, maxWidth, x, y, z, color){
 
                   function wrapText(context, text, x, y, maxWidth, lineHeight) {
                         var words = text.split(' ');
@@ -157,7 +134,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 
                         var context1 = canvas1.getContext('2d');
                         context1.font = "Bold 13px Arial";
-                        context1.fillStyle = "rgb(0, 0, 0, 1)";
+                        context1.fillStyle = color;
 
                         wrapText(context1, text, 0, 10, maxWidth, 12);
                         context1.imageSmoothingEnabled = false;
@@ -178,14 +155,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 
                         scene.add( mesh1 );
 
-
                 }
-                
-                
-                /* 
-                addText(words[0], 250, 0, 0, -50);
-                addText(words[1], 50, 50, 100, -100);
-                */
                 
                 
                 let pieces = [
@@ -206,8 +176,10 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
                 
                 for(let i=0;i<pieces.length; i++){
                     
+                    let color = "rgb(51, 101, 93)";
+                    
                     let p = pieces[i];
-                    addText(p.text, p.width, p.location[0], p.location[1], p.location[2]);
+                    addText(p.text, p.width, p.location[0], p.location[1], p.location[2], color);
                             
                     
                 }
