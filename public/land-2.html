@@ -55,13 +55,17 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
       </div>
           
         </div>
-    
+      
+    <script src="https://unpkg.com/three"></script>
+<script src="https://unpkg.com/@seregpie/three.text-texture"></script>
+<script src="https://unpkg.com/@seregpie/three.text-sprite"></script>
   
       <script type="module">
-          import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/109/three.module.js';
-			
+          
           import { TrackballControls } from './assets/scripts/trackballcontrols.js';
           import { CSS3DRenderer, CSS3DObject } from './assets/scripts/css3renderer.js';
+          
+          // fix blurry text
           
           var perspectiveCamera, orthographicCamera, controls, scene, renderer, stats;
 
@@ -92,6 +96,13 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 
 				var geometry = new THREE.CylinderBufferGeometry( 0, 10, 30, 4, 1 );
 				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
+                
+                
+                let words = [];
+                
+                words = [
+                    `alive where we glisten together like sovereign and are lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. alive where we glisten together like sovereign and are lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. `
+                ]
                 
                 
                 var cssRenderer = new CSS3DRenderer();
@@ -126,9 +137,9 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 
                var canvas1 = document.createElement('canvas');
     var context1 = canvas1.getContext('2d');
-    context1.font = "Bold 40px Arial";
-    context1.fillStyle = "rgba(49, 13, 13, 0.95)";
-    context1.fillText("hi!!!!!!!", 0, 50);
+    context1.font = "Bold 12px Arial";
+    context1.fillStyle = "rgb(0, 0, 0, 1)";
+    context1.fillText(words[0], 0, 50);
 
     var texture1 = new THREE.Texture(canvas1);
     texture1.needsUpdate = true;
@@ -144,6 +155,20 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
     mesh1.position.set(0, 0, 0);
 
     scene.add( mesh1 );
+                
+                let sprite = new THREE.TextSprite({
+  fillStyle: '#24ff00',
+  fontFamily: '"Times New Roman", Times, serif',
+  fontSize: 10,
+  fontStyle: 'italic',
+  text: [
+    'Twinkle, twinkle, little star,',
+    'How I wonder what you are!',
+    'Up above the world so high,',
+    'Like a diamond in the sky.',
+  ].join('\n'),
+});
+scene.add(sprite);
                 
                 
 				// lights
