@@ -1,12 +1,19 @@
+
 /**
  * Based on http://www.emagix.net/academic/mscs-project/item/camera-sync-with-css3-and-webgl-threejs
  * @author mrdoob / http://mrdoob.com/
  * @author yomotsu / https://yomotsu.net/
  */
 
-THREE.CSS3DObject = function ( element ) {
+import {
+	Matrix4,
+	Object3D,
+	Vector3
+} from "https://cdnjs.cloudflare.com/ajax/libs/three.js/109/three.module.js";
 
-	THREE.Object3D.call( this );
+var CSS3DObject = function ( element ) {
+
+	Object3D.call( this );
 
 	this.element = element;
 	this.element.style.position = 'absolute';
@@ -27,26 +34,26 @@ THREE.CSS3DObject = function ( element ) {
 
 };
 
-THREE.CSS3DObject.prototype = Object.create( THREE.Object3D.prototype );
-THREE.CSS3DObject.prototype.constructor = THREE.CSS3DObject;
+CSS3DObject.prototype = Object.create( Object3D.prototype );
+CSS3DObject.prototype.constructor = CSS3DObject;
 
-THREE.CSS3DSprite = function ( element ) {
+var CSS3DSprite = function ( element ) {
 
-	THREE.CSS3DObject.call( this, element );
+	CSS3DObject.call( this, element );
 
 };
 
-THREE.CSS3DSprite.prototype = Object.create( THREE.CSS3DObject.prototype );
-THREE.CSS3DSprite.prototype.constructor = THREE.CSS3DSprite;
+CSS3DSprite.prototype = Object.create( CSS3DObject.prototype );
+CSS3DSprite.prototype.constructor = CSS3DSprite;
 
 //
 
-THREE.CSS3DRenderer = function () {
+var CSS3DRenderer = function () {
 
 	var _width, _height;
 	var _widthHalf, _heightHalf;
 
-	var matrix = new THREE.Matrix4();
+	var matrix = new Matrix4();
 
 	var cache = {
 		camera: { fov: 0, style: '' },
@@ -159,11 +166,11 @@ THREE.CSS3DRenderer = function () {
 
 	function renderObject( object, camera, cameraCSSMatrix ) {
 
-		if ( object instanceof THREE.CSS3DObject ) {
+		if ( object instanceof CSS3DObject ) {
 
 			var style;
 
-			if ( object instanceof THREE.CSS3DSprite ) {
+			if ( object instanceof CSS3DSprite ) {
 
 				// http://swiftcoder.wordpress.com/2008/11/25/constructing-a-billboard-matrix/
 
@@ -223,8 +230,8 @@ THREE.CSS3DRenderer = function () {
 
 	var getDistanceToSquared = function () {
 
-		var a = new THREE.Vector3();
-		var b = new THREE.Vector3();
+		var a = new Vector3();
+		var b = new Vector3();
 
 		return function ( object1, object2 ) {
 
@@ -243,7 +250,7 @@ THREE.CSS3DRenderer = function () {
 
 		scene.traverse( function ( object ) {
 
-			if ( object instanceof THREE.CSS3DObject ) result.push( object );
+			if ( object instanceof CSS3DObject ) result.push( object );
 
 		} );
 
@@ -336,3 +343,5 @@ THREE.CSS3DRenderer = function () {
 	};
 
 };
+
+export { CSS3DObject, CSS3DSprite, CSS3DRenderer };

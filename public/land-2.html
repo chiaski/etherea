@@ -61,6 +61,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
           import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/109/three.module.js';
 			
           import { TrackballControls } from './assets/scripts/trackballcontrols.js';
+          import { CSS3DRenderer } from './assets/scripts/css3renderer.js';
           
           var perspectiveCamera, orthographicCamera, controls, scene, renderer, stats;
 
@@ -91,6 +92,16 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 
 				var geometry = new THREE.CylinderBufferGeometry( 0, 10, 30, 4, 1 );
 				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
+                
+                
+                var cssRenderer = new CSS3DRenderer();
+                
+                
+
+                cssRenderer.setSize( window.innerWidth, window.innerHeight );
+                cssRenderer.domElement.style.position = 'absolute';
+                cssRenderer.domElement.style.top = 0;
+
 
 				for ( var i = 0; i < 50; i ++ ) {
 
@@ -104,6 +115,15 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 
 				}
 
+                
+                // create the plane mesh
+                var material = new THREE.MeshBasicMaterial({ wireframe: true });
+                var geometry = new THREE.PlaneGeometry();
+                var planeMesh= new THREE.Mesh( geometry, material );
+                // add it to the WebGL scene
+                
+                scene.add(planeMesh); 
+                
 				// lights
 
 				var light = new THREE.DirectionalLight( 0xffffff );
@@ -187,6 +207,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 			}
 
       </script>
+      
       
   </body>
 </html>
