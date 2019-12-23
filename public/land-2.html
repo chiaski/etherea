@@ -24,6 +24,7 @@
           height:100%;
           top:0;left:0;
           z-index:9;
+          opacity:0.4;
           
           mix-blend-mode: multiply;
           pointer-events: none;
@@ -37,14 +38,9 @@
       
       canvas{
           width:100%; height: 100%;
+          box-sizing: border-box;
       }
-      
-      #container{
-          pointer-events: all;
-          width:100% !important;
-          height:100% !important; 
-          background:red;
-      }
+
       
       #header{
           background-image:url(assets/header-cover.png);
@@ -74,17 +70,13 @@
       
       <div class="overlay-test"><img src="https://i.pinimg.com/564x/df/8a/ce/df8ace7a82fd5696377877df84d35d6a.jpg"></div>
       
-      <div class="container" id="container">
+      <div class="container" id="container" >
           
-          <div class="landscape">
+          <div class="landscape"> 
           
           
           </div>
           
-		<div id="blocker">
-
-
-		</div>
       
           <!--
       <div class="piece" style="transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(10deg) rotateY(18deg) rotateZ(0deg);
@@ -150,7 +142,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 
 				scene = new THREE.Scene();
 				scene.background = new THREE.Color( 0xffffff );
-				scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
+				scene.fog = new THREE.FogExp2( 0xffffff, 0.003 );
 
 				var geometry = new THREE.CylinderBufferGeometry( 0, 10, 30, 4, 1 );
 				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
@@ -161,6 +153,16 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
                 cssRenderer.setSize( window.innerWidth, window.innerHeight );
                 cssRenderer.domElement.style.top = 0;
 
+
+                var geometry = new THREE.PlaneGeometry( 1000, 1000, 1, 1 );
+                var material = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
+                var floor = new THREE.Mesh( geometry, material );
+                floor.material.side = THREE.DoubleSide;
+                floor.rotation.x = 90;
+                floor.position.set(0, -50, 0);
+                
+                
+                scene.add( floor );
 
                 /* 
 				for ( var i = 0; i < 50; i ++ ) {
@@ -289,7 +291,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
                 
                 for(let i=0;i<pieces.length; i++){
                     
-                    let color = "rgb(51, 101, 93)";
+                    let color = "rgb(0, 0, 0)";
                     let size = 12; // def
                     
                     let p = pieces[i];
@@ -325,7 +327,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 				light.position.set( - 1, - 1, - 1 );
 				scene.add( light );
 
-				var light = new THREE.AmbientLight( 0xff2525 );
+				var light = new THREE.AmbientLight( 0xffc9c9 );
 				scene.add( light );
 
 				// renderer
