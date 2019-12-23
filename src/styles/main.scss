@@ -97,6 +97,32 @@
     -o-transition: all .3s linear;
     transition: all .3s linear;
     
+    .landscape-location{
+        position:absolute;
+        width:100%;
+    
+        
+        margin:auto;
+        left:0;
+        bottom:0;
+        z-index:999;
+        
+        padding:2em;
+        height:20px;
+        filter:0 !important;
+        pointer-events: none;
+        text-align: center;
+        color:#fff;
+        font-family:"courier new";
+        
+        .landscape-det-temp::after{
+            content: "°C";
+            vertical-align: super;
+            font-size:12px;
+        }
+        
+    }
+    
 }
 
 .landscape:hover{

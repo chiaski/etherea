@@ -69,9 +69,18 @@
       
       <div class="overlay-test"><img src="https://i.pinimg.com/564x/df/8a/ce/df8ace7a82fd5696377877df84d35d6a.jpg"></div>
       
+      
       <div class="container" id="container" >
           
           <div class="landscape"> 
+
+              <div class="landscape-location">
+&nbsp;
+                  <label class="landscape-det-temp">13</label>
+                  <br>
+                  <label class="landscape-det-climate">COLD, DREARY </label> 
+              </div>
+
           
           
           </div>
@@ -280,10 +289,19 @@
                     
                     {
                     text: `the land is rich and green and pure. a bovine carcass rests on the land, dust and ash whirling against a rising, drappling sky. my girl climbs slowly on hilltops`,
-                    location: [-75, -120, 70],
-                    width: 650,
+                    location: [-80, -120, 70],
+                    width: 900,
                     size: 14
+                    },
+                    
+                    {
+                    text: `
+                    when we climb the steps of a familiar space we are far more understanding i dream of higher places, mountains, and men holding up my world. on other days we climb attempting to reach the lords and towers hiding there in the sky`,
+                    location: [50, 0, -30],
+                    width: 400,
+                    size: 13
                     }
+                    
                     
                     
                 ];
@@ -338,7 +356,7 @@
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				$(".landscape").html( renderer.domElement );
+				$(".landscape").append( renderer.domElement );
 
 
 				//
