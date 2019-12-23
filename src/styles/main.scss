@@ -108,7 +108,7 @@
 
 
 .story {
-    z-index: 999999;
+    z-index: 9;
     width: 500px;
     margin: 0;
     position: absolute;
@@ -149,20 +149,22 @@
         margin: auto;
         left: 0;
         bottom: 0;
-        z-index: 999;
+        z-index: 5;
 
-        padding: 2em;
-        height: 20px;
+        padding: 1em;
+        height: 80px;
         filter: 0 !important;
         pointer-events: none;
         text-align: center;
-        color: #fff;
+        color: #000;
         font-family: "courier new";
+        mix-blend-mode: multiply;
 
         .landscape-det-temp::after {
             content: "°C";
             vertical-align: super;
             font-size: 12px;
+            z-index:9;
         }
 
     }
@@ -170,7 +172,7 @@
 }
 
 .landscape:hover {
-    filter: blur(0);
+ //   filter: blur(0);
 }
 
 
