@@ -36,19 +36,9 @@
           height:100%;
       }
       
-      canvas{
-          width:100%; height: 100%;
-          box-sizing: border-box;
-      }
-
-      
       #header{
           background-image:url(assets/header-cover.png);
           height:130px;
-          z-index:99999;
-          left:0;
-          
-          
       }
 
   </style>
@@ -59,13 +49,23 @@
       
       
       <div class="header" id="header">
-      <label>Travel</label><br>
+          
+          <div class="travel-audio">
+            <!-- PLACE AUDIO CONTROL HERE 
+                For each land you must 
+            -->
+          </div>
+          
+      <label>Travel</label>
+          
+        <div class="travel-directions">
           <a href="">←</a> &nbsp;
           
           Land N
           
           &nbsp;
           <a href="">→</a>
+        </div>
       </div>
       
       <div class="overlay-test"><img src="https://i.pinimg.com/564x/df/8a/ce/df8ace7a82fd5696377877df84d35d6a.jpg"></div>
@@ -76,39 +76,13 @@
           
           
           </div>
+
           
-      
-          <!--
-      <div class="piece" style="transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(10deg) rotateY(18deg) rotateZ(0deg);
--moz-transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(10deg) rotateY(18deg) rotateZ(0deg);
--webkit-transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(10deg) rotateY(18deg) rotateZ(0deg);
--o-transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(10deg) rotateY(18deg) rotateZ(0deg);
--ms-transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(10deg) rotateY(18deg) rotateZ(0deg);
-perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -webkit-perspective-origin: 50% 30%;">
-      inside there is a tortorous, magnificent <a href="">door</a> beckoning of a place years to come. i feel her faintly, scratches and all&mdash;pressed my ear onto the nape of the evergreen and see behind the slints a new world
-      </div>
-          
-          
-      <div class="piece piece-circle" style="width:170px;height:150px;top:20vh;left:20vw;">alive 
-      where we glisten together like sovereign and are lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. alive where we glisten together like sovereign and are lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. 
-      </div>
-          
-          
-      <div class="piece piece-mountain" style="position:absolute;bottom:10px;width:300px;height:400px;right:5vw;">
-      when we climb the steps of a famailiar space we are far more undersatnding i dream of higher places, mountains, and men holding up my world. on other days we climb attempting to reach the lords and towers hiding there in the sky
-          
-      </div>
-          
-          
-      <div class="piece" style="position:absolute;bottom:0;width:100%;left:0;">
-      the land is rich and green and pure. a bovine carcass rests on the land, dust and ash whirling against a rising, drappling sky. my girl climbs slowly on hilltops
-      </div>-->
-          
-        </div>
+    </div>
       
     <script src="https://unpkg.com/three"></script>
-<script src="https://unpkg.com/@seregpie/three.text-texture"></script>
-<script src="https://unpkg.com/@seregpie/three.text-sprite"></script>
+    <script src="https://unpkg.com/@seregpie/three.text-texture"></script>
+    <script src="https://unpkg.com/@seregpie/three.text-sprite"></script>
   
       <script type="module">
           
@@ -178,7 +152,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 				} */
 
 
-                function addText(text, maxWidth, x, y, z, color, size){
+                function addText(text, maxWidth, x, y, z, color, size, rotation){
 
                   function wrapText(context, text, x, y, maxWidth, lineHeight) {
                         var words = text.split(' ');
@@ -229,8 +203,15 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
                             new THREE.PlaneGeometry(canvas1.width / 2.2, canvas1.height / 2.2),
                             material1
                         );
-
+                    
+                    
+                    // adjust based on canvas funkiness
                         mesh1.position.set(x + 100, y, z);
+                    
+                    // rotate
+                        if(rotation){
+                            mesh1.rotation.set(rotation.x * (Math.PI/180), rotation.y * (Math.PI/180), rotation.z * (Math.PI/180));
+                        }
 
                         scene.add( mesh1 );
 
@@ -260,7 +241,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
                     
                     {
                     text: `alive where we glisten together like sovereigns lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this.`,
-                    location: [0, 0, -50],
+                    location: [0, -30, 0],
                     width: 400
                     },
                     
@@ -272,9 +253,14 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
                     
                     {
                     text: `inside there is a tortorous, magnificent door beckoning of a place years to come. i feel her faintly, scratches and all——pressed my ear onto the nape of the evergreen and see behind the slints a new world`,
-                    location: [-50, -50, 60],
+                    location: [-50, -50, 20],
                     width: 120,
-                    size: 9
+                    size: 9,
+                    rotation: {
+                        x: 0,
+                        y: 20,
+                        z: 0
+                    }
                     },
                     
                     {
@@ -293,12 +279,14 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
                     
                     let color = "rgb(0, 0, 0)";
                     let size = 12; // def
+                    let rotation;
                     
                     let p = pieces[i];
                     
-                    if(p.size){ size = p.size}
+                    if(p.size){ size = p.size }
+                    if(p.rotation){ rotation = p.rotation }
                     
-                    addText(p.text, p.width, p.location[0], p.location[1], p.location[2], color, size);
+                    addText(p.text, p.width, p.location[0], p.location[1], p.location[2], color, size, rotation);
                             
                     
                 }
