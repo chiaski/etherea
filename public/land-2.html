@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>land #1</title>
+    <title>land #2 - in etherea we are away singing</title>
   <link rel="stylesheet" href="./assets/styles/main.css" type="text/css">
+      
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
       
   <style type="text/css">
    
@@ -13,7 +15,45 @@
 				position: absolute;
 				width: 100%;
 				height: 100%;
+                pointer-events: none;
 			}
+      
+      .overlay-test{
+          position: fixed;
+          width:100%;
+          height:100%;
+          top:0;left:0;
+          z-index:9;
+          
+          mix-blend-mode: multiply;
+          pointer-events: none;
+          
+      }
+      
+      .overlay-test img{
+          width:100%;
+          height:100%;
+      }
+      
+      canvas{
+          width:100%; height: 100%;
+      }
+      
+      #container{
+          pointer-events: all;
+          width:100% !important;
+          height:100% !important; 
+          background:red;
+      }
+      
+      #header{
+          background-image:url(assets/header-cover.png);
+          height:130px;
+          z-index:99999;
+          left:0;
+          
+          
+      }
 
   </style>
       
@@ -21,14 +61,32 @@
   </head>
   <body>
       
+      
+      <div class="header" id="header">
+      <label>Travel</label><br>
+          <a href="">←</a> &nbsp;
+          
+          Land N
+          
+          &nbsp;
+          <a href="">→</a>
+      </div>
+      
+      <div class="overlay-test"><img src="https://i.pinimg.com/564x/df/8a/ce/df8ace7a82fd5696377877df84d35d6a.jpg"></div>
+      
       <div class="container" id="container">
           
+          <div class="landscape">
+          
+          
+          </div>
           
 		<div id="blocker">
 
 
 		</div>
       
+          <!--
       <div class="piece" style="transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(10deg) rotateY(18deg) rotateZ(0deg);
 -moz-transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(10deg) rotateY(18deg) rotateZ(0deg);
 -webkit-transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(10deg) rotateY(18deg) rotateZ(0deg);
@@ -52,7 +110,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
           
       <div class="piece" style="position:absolute;bottom:0;width:100%;left:0;">
       the land is rich and green and pure. a bovine carcass rests on the land, dust and ash whirling against a rising, drappling sky. my girl climbs slowly on hilltops
-      </div>
+      </div>-->
           
         </div>
       
@@ -83,7 +141,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 				var aspect = window.innerWidth / window.innerHeight;
 
 				perspectiveCamera = new THREE.PerspectiveCamera( 60, aspect, 1, 1000 );
-				perspectiveCamera.position.z = 500;
+				perspectiveCamera.position.z = 300;
 
 				orthographicCamera = new THREE.OrthographicCamera( frustumSize * aspect / - 2, frustumSize * aspect / 2, frustumSize / 2, frustumSize / - 2, 1, 1000 );
 				orthographicCamera.position.z = 500;
@@ -99,13 +157,26 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
                 
                 
                 var cssRenderer = new CSS3DRenderer();
-            
+
                 cssRenderer.setSize( window.innerWidth, window.innerHeight );
-                cssRenderer.domElement.style.position = 'absolute';
                 cssRenderer.domElement.style.top = 0;
 
 
-                function addText(text, maxWidth, x, y, z, color){
+                /* 
+				for ( var i = 0; i < 50; i ++ ) {
+
+					var mesh = new THREE.Mesh( geometry, material );
+					mesh.position.x = ( Math.random() - 0.5 ) * 200;
+					mesh.position.y = ( Math.random() - 0.5 ) * 500;
+					mesh.position.z = ( Math.random() - 0.5 ) * 200;
+					mesh.updateMatrix();
+					mesh.matrixAutoUpdate = false;
+					scene.add( mesh );
+
+				} */
+
+
+                function addText(text, maxWidth, x, y, z, color, size){
 
                   function wrapText(context, text, x, y, maxWidth, lineHeight) {
                         var words = text.split(' ');
@@ -132,11 +203,14 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
                        var canvas1 = document.createElement('canvas');
                         canvas1.imageSmoothingEnabled = false;
 
+                        canvas1.width = canvas1.width * 2;
+                        canvas1.height = canvas1.height * 2;
+                    
                         var context1 = canvas1.getContext('2d');
-                        context1.font = "Bold 13px Arial";
+                        context1.font = "Bold " + size + "px Arial";
                         context1.fillStyle = color;
 
-                        wrapText(context1, text, 0, 10, maxWidth, 12);
+                        wrapText(context1, text, 0, 30, maxWidth, size + 3);
                         context1.imageSmoothingEnabled = false;
 
                         var texture1 = new THREE.Texture(canvas1);
@@ -145,13 +219,16 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
                         var material1 = new THREE.MeshBasicMaterial( { map: texture1, side:THREE.DoubleSide } );
 
                         material1.transparent = true;
-
+                    
+                    console.log(canvas1.width);
+                    console.log(canvas1.height);
+                    
                         var mesh1 = new THREE.Mesh(
-                            new THREE.PlaneGeometry(canvas1.width, canvas1.height),
+                            new THREE.PlaneGeometry(canvas1.width / 2.2, canvas1.height / 2.2),
                             material1
                         );
 
-                        mesh1.position.set(x, y, z);
+                        mesh1.position.set(x + 100, y, z);
 
                         scene.add( mesh1 );
 
@@ -159,10 +236,30 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
                 
                 
                 let pieces = [
+                    
+                    /*
+                    
+                    text MULTILINE!
+                    location X Y Z
+                    width HOW BIG
+                    size FONT-SIZE IN PX
+                    
                     {
-                    text: `alive where we glisten together like sovereigns lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. alive where we glisten together like sovereign and are lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this. `,
+                    text: `THE GHOST OF BOB SAGET CAME TO ME IN A DREAM `,
+                    
+                    location: [50, 150, -100],
+                    width: 50,
+                    size: 5
+                    },
+                    
+                    */
+                    
+                    
+                    
+                    {
+                    text: `alive where we glisten together like sovereigns lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this.`,
                     location: [0, 0, -50],
-                    width: 250
+                    width: 400
                     },
                     
                     {
@@ -170,6 +267,22 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
                     location: [50, 150, -100],
                     width: 50
                     },
+                    
+                    {
+                    text: `inside there is a tortorous, magnificent door beckoning of a place years to come. i feel her faintly, scratches and all——pressed my ear onto the nape of the evergreen and see behind the slints a new world`,
+                    location: [-50, -50, 60],
+                    width: 120,
+                    size: 9
+                    },
+                    
+                    {
+                    text: `the land is rich and green and pure. a bovine carcass rests on the land, dust and ash whirling against a rising, drappling sky. my girl climbs slowly on hilltops`,
+                    location: [-75, -100, 70],
+                    width: 650,
+                    size: 14
+                    }
+                    
+                    
                 ];
                 
                 
@@ -177,9 +290,13 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
                 for(let i=0;i<pieces.length; i++){
                     
                     let color = "rgb(51, 101, 93)";
+                    let size = 12; // def
                     
                     let p = pieces[i];
-                    addText(p.text, p.width, p.location[0], p.location[1], p.location[2], color);
+                    
+                    if(p.size){ size = p.size}
+                    
+                    addText(p.text, p.width, p.location[0], p.location[1], p.location[2], color, size);
                             
                     
                 }
@@ -208,7 +325,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 				light.position.set( - 1, - 1, - 1 );
 				scene.add( light );
 
-				var light = new THREE.AmbientLight( 0xd8d8d8 );
+				var light = new THREE.AmbientLight( 0xff2525 );
 				scene.add( light );
 
 				// renderer
@@ -216,7 +333,7 @@ perspective: 1000px;-webkit-perspective: 1000px; perspective-origin: 50% 30%; -w
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				document.body.appendChild( renderer.domElement );
+				$(".landscape").html( renderer.domElement );
 
 
 				//
