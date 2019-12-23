@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+
+<!--
+
+
+            HAVE YOU
+        BEEN DREAMING TOO?
+
+
+-->
+
 <html>
   <head>
     <meta charset="UTF-8">
@@ -6,17 +16,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>land #2 - in etherea we are away singing</title>
   <link rel="stylesheet" href="./assets/styles/main.css" type="text/css">
-      
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
       
   <style type="text/css">
-   
-			#blocker {
-				position: absolute;
-				width: 100%;
-				height: 100%;
-                pointer-events: none;
-			}
       
       .overlay-test{
           position: fixed;
@@ -36,10 +38,6 @@
           height:100%;
       }
       
-      #header{
-          background-image:url(assets/header-cover.png);
-          height:130px;
-      }
 
   </style>
       
@@ -56,14 +54,15 @@
             -->
           </div>
           
-      <label>Travel</label>
+      <label>TRAVEL</label>
           
         <div class="travel-directions">
-          <a href="">←</a> &nbsp;
-          
-          Land N
-          
+          <a href="">←</a> 
           &nbsp;
+          Land N
+          &nbsp;
+          
+          
           <a href="">→</a>
         </div>
       </div>
@@ -80,9 +79,13 @@
           
     </div>
       
+            
+      
+      <!-- GROSS! -->
+      
+      
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://unpkg.com/three"></script>
-    <script src="https://unpkg.com/@seregpie/three.text-texture"></script>
-    <script src="https://unpkg.com/@seregpie/three.text-sprite"></script>
   
       <script type="module">
           
@@ -116,7 +119,7 @@
 
 				scene = new THREE.Scene();
 				scene.background = new THREE.Color( 0xffffff );
-				scene.fog = new THREE.FogExp2( 0xffffff, 0.003 );
+				scene.fog = new THREE.FogExp2( 0xffffff, 0.0025 );
 
 				var geometry = new THREE.CylinderBufferGeometry( 0, 10, 30, 4, 1 );
 				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
@@ -237,7 +240,7 @@
                     
                     */
                     
-                    
+    
                     
                     {
                     text: `alive where we glisten together like sovereigns lonely in the names of gods. i frolic sobbing on platforms like wisps, wishing for the last of anything but this.`,
@@ -246,14 +249,26 @@
                     },
                     
                     {
-                    text: `THE GHOST OF BOB SAGET CAME TO ME IN A DREAM `,
-                    location: [50, 150, -100],
+                    text: ` we fall slowly `,
+                    location: [50, 100, -100],
                     width: 50
                     },
                     
                     {
+                    text: ` we fall slowly `,
+                    location: [-30, 90, -40],
+                    width: 50,
+                    rotation: {
+                        x: 0,
+                        y: -10,
+                        z: 0
+                    }
+                        
+                    },
+                    
+                    {
                     text: `inside there is a tortorous, magnificent door beckoning of a place years to come. i feel her faintly, scratches and all——pressed my ear onto the nape of the evergreen and see behind the slints a new world`,
-                    location: [-50, -50, 20],
+                    location: [-50, -70, 10],
                     width: 120,
                     size: 9,
                     rotation: {
@@ -265,7 +280,7 @@
                     
                     {
                     text: `the land is rich and green and pure. a bovine carcass rests on the land, dust and ash whirling against a rising, drappling sky. my girl climbs slowly on hilltops`,
-                    location: [-75, -100, 70],
+                    location: [-75, -120, 70],
                     width: 650,
                     size: 14
                     }

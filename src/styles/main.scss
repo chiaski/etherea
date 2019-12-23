@@ -11,6 +11,28 @@
     font-style: normal;
 }
 
+
+.box {
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background:none;
+
+    .box-inner {
+        margin: auto;
+        align-self: center;
+    }
+
+    .inner-center {
+        padding: 1em;
+    }
+}
+
+
 #header{
     
     position:absolute;
@@ -19,6 +41,8 @@
     background-repeat:repeat-x;
     padding:1em;
     box-sizing: border-box;
+    background-image:url(https://chiaski.com/create/etherea/assets/header-cover.png);
+    height:130px;
     
     font-family:"Helvetica";
     font-weight:bold;
@@ -91,6 +115,18 @@
     }
 }
 
+
+/* SPECIAL */
+
+.travel-list{
+    display: inline-block;
+    
+    a{
+        color:blue;
+    }
+    
+}
+
 .piece-circle{
   clip-path: circle(70px at center);
 }
@@ -98,3 +134,4 @@
 .piece-mountain{
     clip-path: polygon(99% 14%, 66% 0%, 36% 35%, 20% 12%, 0% 100%, 98% 100%);
 }
+
