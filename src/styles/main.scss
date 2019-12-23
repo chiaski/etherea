@@ -1,12 +1,12 @@
 @import url("https://use.typekit.net/gad4vfw.css");
 
-*{
-    
+* {
+
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-family:"Helvetica";
-    font-size:1em;
+    font-family: "Helvetica";
+    font-size: 1em;
     font-weight: 400;
     font-style: normal;
 }
@@ -20,7 +20,7 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    background:none;
+    background: none;
 
     .box-inner {
         margin: auto;
@@ -33,131 +33,174 @@
 }
 
 
-#header{
-    
-    position:absolute;
-    top:0;
-    left:0;
-    background-repeat:repeat-x;
-    padding:1em;
+#header {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: repeat-x;
+    padding: 1em;
     box-sizing: border-box;
-    background-image:url(https://chiaski.com/create/etherea/assets/header-cover.png);
-    height:130px;
-    
-    font-family:"Helvetica";
-    font-weight:bold;
-    filter:blur(0.4px);
-          z-index:99999;
-    
-    width:100%;
+    background-image: url(https://chiaski.com/create/etherea/assets/header-cover.png);
+    height: 130px;
+
+    font-family: "Helvetica";
+    font-weight: bold;
+    filter: blur(0.4px);
+    z-index: 99999;
+
+    width: 100%;
+    text-align: center;
+
+    .travel-directions {
+        margin-top: -.5em;
+    }
+
+    a {
+        color: blue;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.4em;
+    }
+
+    label {
+        font-size: 11px;
+        display: block;
+    }
+}
+
+#container {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    .container-bottom {
+        position: absolute;
+        z-index: 2;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100px;
+
+        background-image: url(https://chiaski.com/create/etherea/assets/header-cover.png);
+
+
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+
+}
+
+.wrapper-landscape {
+    position: relative;
+    //   background:blue;
+    width: 1000px;
+
+}
+
+
+.story {
+    z-index: 999999;
+    width: 500px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(35, 35, 47, 0.4);
+    padding: 1em;
+
+    color: #fff;
     text-align: center;
     
-    .travel-directions{
-        margin-top:-.5em;
+    p, h2{
+        margin:0;
     }
     
-    a{
-        color:blue;
-        text-decoration: none;
-        font-weight:bold;
-        font-size:1.4em;
+    p{
+        padding:.5em;
     }
-    
-    label{
-        font-size:11px;
-        display:block;
-    }
-}
-
-#container{
-    position: absolute;
-    top:0; left: 0;
-    
-    
-    width:100%;
-    height:100%;
-    box-sizing: border-box;
-    
     
 }
 
-.wrapper-landscape{
-    position: relative;
-  //   background:blue;
-    width:1000px;
-   
-}
 
-.landscape{
-    
-    filter:blur(1.5px);
+.landscape {
+
+    filter: blur(1.5px);
     -webkit-transition: all .3s linear;
     -moz-transition: all .3s linear;
     -ms-transition: all .3s linear;
     -o-transition: all .3s linear;
     transition: all .3s linear;
-    
-    .landscape-location{
-        position:absolute;
-        width:100%;
-    
-        
-        margin:auto;
-        left:0;
-        bottom:0;
-        z-index:999;
-        
-        padding:2em;
-        height:20px;
-        filter:0 !important;
+
+    .landscape-location {
+        position: absolute;
+        width: 100%;
+
+
+        margin: auto;
+        left: 0;
+        bottom: 0;
+        z-index: 999;
+
+        padding: 2em;
+        height: 20px;
+        filter: 0 !important;
         pointer-events: none;
         text-align: center;
-        color:#fff;
-        font-family:"courier new";
-        
-        .landscape-det-temp::after{
+        color: #fff;
+        font-family: "courier new";
+
+        .landscape-det-temp::after {
             content: "°C";
             vertical-align: super;
-            font-size:12px;
+            font-size: 12px;
         }
-        
+
     }
-    
+
 }
 
-.landscape:hover{
-    filter:blur(0);
+.landscape:hover {
+    filter: blur(0);
 }
 
 
-.piece{
+.piece {
     position: relative !important;
     text-align: center;
-    display:inline-block;
-    font-size:.9em;
+    display: inline-block;
+    font-size: .9em;
 
-    a{
-        color:blue;
+    a {
+        color: blue;
     }
 }
 
 
 /* SPECIAL */
 
-.travel-list{
+.travel-list {
     display: inline-block;
-    
-    a{
-        color:blue;
+
+    a {
+        color: blue;
     }
-    
+
 }
 
-.piece-circle{
-  clip-path: circle(70px at center);
+.piece-circle {
+    clip-path: circle(70px at center);
 }
 
-.piece-mountain{
+.piece-mountain {
     clip-path: polygon(99% 14%, 66% 0%, 36% 35%, 20% 12%, 0% 100%, 98% 100%);
 }
-

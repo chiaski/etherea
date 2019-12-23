@@ -72,7 +72,13 @@
       
       <div class="container" id="container" >
           
+          <div class="story story-opener">
+            <h2>in land 2</h2>
+            <p>you are running from something far deeper than you know</p>
+          </div>
+          
           <div class="landscape"> 
+              
 
               <div class="landscape-location">
 &nbsp;
@@ -85,6 +91,7 @@
           
           </div>
 
+              <div class="container-bottom"></div>
           
     </div>
       
@@ -96,6 +103,14 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://unpkg.com/three"></script>
   
+      <script type="text/javascript">
+          
+          $(".story-opener").click(function() {
+              $(this).fadeOut("slow");
+          });
+      
+      </script>
+      
       <script type="module">
           
           import { TrackballControls } from './assets/scripts/trackballcontrols.js';
@@ -129,9 +144,6 @@
 				scene = new THREE.Scene();
 				scene.background = new THREE.Color( 0xffffff );
 				scene.fog = new THREE.FogExp2( 0xffffff, 0.0025 );
-
-				var geometry = new THREE.CylinderBufferGeometry( 0, 10, 30, 4, 1 );
-				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
                 
                 
                 var cssRenderer = new CSS3DRenderer();
@@ -150,18 +162,7 @@
                 
                 scene.add( floor );
 
-                /* 
-				for ( var i = 0; i < 50; i ++ ) {
-
-					var mesh = new THREE.Mesh( geometry, material );
-					mesh.position.x = ( Math.random() - 0.5 ) * 200;
-					mesh.position.y = ( Math.random() - 0.5 ) * 500;
-					mesh.position.z = ( Math.random() - 0.5 ) * 200;
-					mesh.updateMatrix();
-					mesh.matrixAutoUpdate = false;
-					scene.add( mesh );
-
-				} */
+            
 
 
                 function addText(text, maxWidth, x, y, z, color, size, rotation){
@@ -276,7 +277,7 @@
                     },
                     
                     {
-                    text: `inside there is a tortorous, magnificent door beckoning of a place years to come. i feel her faintly, scratches and all——pressed my ear onto the nape of the evergreen and see behind the slints a new world`,
+                    text: `away there is a tortorous, magnificent door beckoning of a place years to come. i feel her faintly, scratches and all——pressed my ear onto the nape of the evergreen and see behind the slints a new world`,
                     location: [-50, -70, 10],
                     width: 120,
                     size: 9,
@@ -287,10 +288,18 @@
                     }
                     },
                     
+                    
                     {
-                    text: `the land is rich and green and pure. a bovine carcass rests on the land, dust and ash whirling against a rising, drappling sky. my girl climbs slowly on hilltops`,
+                    text: `THE CASTLE OF THIS LAND WELCOMES YOU! EACH BRICK IS PIECED TOGETHER BY HAND, PRESSED & SMASHED AGAINST CONCRETE. THE BITS OF GLASS AS MATERIAL REFRACT LIGHT AT A THOUSAND SPEEDS, AS IF BENDING THE AIR IMMEDIATELY OUTSIDE THE BUILDING. IT IS MAGICAL AND FRIGHTENING! YOU FEEL UNWELCOME YOU FEEL WELCOME YOU FEEL THE CASTLE OF THIS LAND WELCOMES YOU! EACH BRICK IS PIECED TOGETHER BY HAND, PRESSED & SMASHED AGAINST CONCRETE. THE BITS OF GLASS AS MATERIAL REFRACT LIGHT AT A THOUSAND SPEEDS, AS IF BENDING THE AIR IMMEDIATELY OUTSIDE THE BUILDING. IT IS MAGICAL AND FRIGHTENING! YOU FEEL UNWELCOME YOU FEEL WELCOME YOU FEEL THE CASTLE OF THIS LAND WELCOMES YOU! EACH BRICK IS PIECED TOGETHER BY HAND, PRESSED & SMASHED AGAINST CONCRETE. THE BITS OF GLASS AS MATERIAL REFRACT LIGHT AT A THOUSAND SPEEDS, AS IF BENDING THE AIR IMMEDIATELY OUTSIDE THE BUILDING. IT IS MAGICAL AND FRIGHTENING! YOU FEEL UNWELCOME YOU FEEL WELCOME YOU FEEL THE CASTLE OF THIS LAND WELCOMES YOU! EACH BRICK IS PIECED TOGETHER BY HAND, PRESSED & SMASHED AGAINST CONCRETE. THE BITS OF GLASS AS MATERIAL REFRACT LIGHT AT A THOUSAND SPEEDS, AS IF BENDING THE AIR IMMEDIATELY OUTSIDE THE BUILDING. IT IS MAGICAL AND FRIGHTENING! YOU FEEL UNWELCOME YOU FEEL WELCOME YOU FEEL THE CASTLE OF THIS LAND WELCOMES YOU! EACH BRICK IS PIECED TOGETHER BY HAND, PRESSED & SMASHED AGAINST CONCRETE. THE BITS OF GLASS AS MATERIAL REFRACT LIGHT AT A THOUSAND SPEEDS, AS IF BENDING THE AIR IMMEDIATELY OUTSIDE THE BUILDING. IT IS MAGICAL AND FRIGHTENING! YOU FEEL UNWELCOME YOU FEEL WELCOME YOU FEEL THE CASTLE OF THIS LAND WELCOMES YOU! EACH BRICK IS PIECED TOGETHER BY HAND, PRESSED & SMASHED AGAINST CONCRETE. THE BITS OF GLASS AS MATERIAL REFRACT LIGHT AT A THOUSAND SPEEDS, AS IF BENDING THE AIR IMMEDIATELY OUTSIDE THE BUILDING. IT IS MAGICAL AND FRIGHTENING! YOU FEEL UNWELCOME YOU FEEL WELCOME YOU FEEL THE CASTLE OF THIS LAND WELCOMES YOU! EACH BRICK IS PIECED TOGETHER BY HAND, PRESSED & SMASHED AGAINST CONCRETE. THE BITS OF GLASS AS MATERIAL REFRACT LIGHT AT A THOUSAND SPEEDS, AS IF BENDING THE AIR IMMEDIATELY OUTSIDE THE BUILDING. IT IS MAGICAL AND FRIGHTENING! YOU FEEL UNWELCOME YOU FEEL WELCOME YOU FEEL THE CASTLE OF THIS LAND WELCOMES YOU! EACH BRICK IS PIECED TOGETHER BY HAND, PRESSED & SMASHED AGAINST CONCRETE. THE BITS OF GLASS AS MATERIAL REFRACT LIGHT AT A THOUSAND SPEEDS, AS IF BENDING THE AIR IMMEDIATELY OUTSIDE THE BUILDING. IT IS MAGICAL AND FRIGHTENING! YOU FEEL UNWELCOME YOU FEEL WELCOME YOU FEEL THE CASTLE OF THIS LAND WELCOMES YOU! EACH BRICK IS PIECED TOGETHER BY HAND, PRESSED & SMASHED AGAINST CONCRETE. THE BITS OF GLASS AS MATERIAL REFRACT LIGHT AT A THOUSAND SPEEDS, AS IF BENDING THE AIR IMMEDIATELY OUTSIDE THE BUILDING. IT IS MAGICAL AND FRIGHTENING! YOU FEEL UNWELCOME YOU FEEL WELCOME YOU FEEL `,
+                    location: [-80, 60, 5],
+                    width: 600,
+                    size: 14
+                    },
+                    
+                    {
+                    text: `the land is rich and green and pure. a bovine carcass rests on the land, dust and ash whirling against a rising, drappling sky. my girl climbs slowly on hilltops; body splintered or iced (or between) in the midst of an air near-unbreathable. with every step you take you come closer to breaking the ice, breaking dust, the sound of cities beckoning gone times underneath you.`,
                     location: [-80, -120, 70],
-                    width: 900,
+                    width: 600,
                     size: 14
                     },
                     
@@ -299,6 +308,13 @@
                     when we climb the steps of a familiar space we are far more understanding i dream of higher places, mountains, and men holding up my world. on other days we climb attempting to reach the lords and towers hiding there in the sky`,
                     location: [50, 0, -30],
                     width: 400,
+                    size: 13
+                    },
+                    
+                    {
+                    text: `AAAA AAAAAAAAAAAAA AAAAAAAAAAAA AAAAAAAAA AAAAAAAAAA AAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA`,
+                    location: [-50, 50, -200],
+                    width: 150,
                     size: 13
                     }
                     
