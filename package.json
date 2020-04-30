@@ -37,7 +37,7 @@
     "@seregpie/three.text-sprite": "^2.0.0",
     "aos": "^2.3.4",
     "imagemin-webpack-plugin": "^2.4.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "three-first-person-controls": "^0.2.1"
   }
 }
